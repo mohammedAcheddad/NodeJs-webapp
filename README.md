@@ -1,2 +1,2 @@
-# NodeJs-webapp
- full webapp client and server side using nodejs and express
+# NodeJs-website
+ full server and client side authentication website
