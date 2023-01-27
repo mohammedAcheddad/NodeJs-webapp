@@ -1,7 +1,8 @@
-import { logoutElement,loginElement, url } from "./config.js"
+import { url } from "./config.js"
 import { emailLogin } from "./config.js"
 import { passwordLogin } from "./config.js"
 import { tbody } from "./config.js"
+
 
 
 function jsonToTable(json, tbody,k) {
@@ -15,14 +16,6 @@ function jsonToTable(json, tbody,k) {
         
     }
 }
-
-function clearTBody(tbody) {
-    while (tbody.firstChild) {
-        tbody.removeChild(tbody.firstChild);
-    }
-}
-
-
 export const importMemos = () => {
     fetch(url+"/memos",{
         method:"GET",

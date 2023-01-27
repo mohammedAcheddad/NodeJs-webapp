@@ -7,6 +7,7 @@ export const passwordLogin = document.getElementById("passwordLogin");
 export const welcomeElement = document.getElementById("welcomeElement");
 export const applicationElement = document.getElementById("applicationElement");
 export const loginElement = document.getElementById("loginElement");
+export const logoutElement = document.getElementById("logoutElement");
 export const registerElement = document.getElementById("registerElement");
 export const memoInput = document.getElementById("memoInput");
 export const resetBtn = document.getElementById("resetBtn");

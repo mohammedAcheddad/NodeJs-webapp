@@ -1,5 +1,5 @@
-import {emailLogin, loginBtn, logoutBtn, passwordLogin} from "./config.js"
-import {authentifier, logOut,importMemos} from "./auth.js"
+import {emailLogin, loginBtn, loginElement, logoutElement, passwordLogin} from "./config.js"
+import {authentifier, logOut} from "./auth.js"
 
 window.addEventListener('popstate', function (event) {
 	singlePageManger(getPath())
@@ -9,14 +9,16 @@ loginBtn.addEventListener('click',async ()=>{
    const login = emailLogin.value
    const pwd = passwordLogin.value
    if(!login  || !pwd)
-    return alert("please complete all fileds")
+    return alert("please complete all fileds") 
 
-    await authentifier(login,pwd)
-
-
+    authentifier(login,pwd)
+    logoutElement.classList.remove("hidden")
+    loginElement.classList.add("hidden")
 })
-logoutBtn.addEventListener('click',()=>{
+logoutElement.addEventListener('click',()=>{
     logOut();
+    logoutElement.classList.add("hidden")
+    loginElement.classList.remove("hidden")
 })
 
 const getPath=()=>window.location.hash || '#welcome'
