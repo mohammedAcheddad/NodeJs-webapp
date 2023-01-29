@@ -14,6 +14,14 @@
     color:inherit;
     transition-duration: 500ms;
 }
+
+
+.delete{
+    border: 0px;
+    padding: 10px 20px;
+    background-color: rgb(187, 58, 58);
+    color: white;
+}
 /* header */
 header{
     display: flex;
@@ -178,7 +186,7 @@ section{
     gap: 20px;
    }
 #application #addMemo{
-    width: 200px;
+    width: 300px;
     border: 1px solid lightgray;
     height: fit-content;
     padding: 20px;

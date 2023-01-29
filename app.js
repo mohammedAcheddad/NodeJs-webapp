@@ -1,33 +1,35 @@
-"use strict";
-const express = require("express");
 const mongoose= require('mongoose')
+const express = require('express')
 const session = require('express-session')
-const dotenv = require("dotenv");
-const { UserRouter } = require('./routes');
-const { MemosRouter } = require('./routes');
+const { UserRouter } = require('./routes/users');
+const { memosRouter } = require('./routes/memos');
 
-const app = express();
-app.use(express.json())
-app.use(express.static("./public"))
-
+//mongodb
 mongoose.connect
 ("mongodb+srv://icemed700:tcYUr8l87NHkwVuS@testnode.qe06emk.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>console.log("connected to mongodb atlas"))
 .catch(err=>console.log(err))
 
+//express
+const app=express();
+
+app.use(express.static("./public"))
+
+//middleware to parse json data on body request
+app.use(express.json())
+
+// injection du middleware des sessions
 app.use(session({
-    secret: "uemf 2022",
+    secret: "cheddad 2019",
     resave: false,
     saveUninitialized: true,
     cookie: { httpOnly:true }
   }))
 
+
 app.use('/users',UserRouter)
 
-
-app.use('/memos',MemosRouter)
-
-
+// check authentification (gard / interceptor)
 app.use((req,res,next)=>{
 
     if(!req.session.login)
@@ -35,9 +37,9 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.listen(3000, (err)=>{
-    if (err) console.log(err)
-    console.log('listening on port 3000')
+app.use('/memos',memosRouter)
+
+const port =30000
+app.listen(port, ()=>{
+    console.log('server listening on port : ',port)
 })
-
-
