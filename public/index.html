@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Client web (Rest Api)</h1>
+        <h1>Blogs manager</h1>
         <nav>
             <ul>
                 <li id="welcomeElement"><a href="#welcome">Welcome</a></li>
@@ -27,40 +27,42 @@
          <!-- welcome -->
         <section class="component hidden" id="welcome">
             <h2>Welcome</h2>
-            <p>to our web client for a web service developed using the rest api convention</p>
+            <p>This is my blog manager</p>
         </section>
          <!-- end welcome -->
          <!-- application -->
-        <section class="component hidden" id="application">
-            <article id="addMemo">
-                <h2>
-                    Add Memo
-                </h2>
-                <div>
-                    <input id="memoInput"  placeholder="content" type="text">
-                </div>
-                <div class="btns">
-                    <button id="resetBtn">Reset</button>
-                    <button id="addBtn">Add</button>
-                </div>
-            </article>
-            <article id="listMemo">
-                <h2>List of Memos <span id="loading" class="hidden">loading...</span></h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>content</th>
-                            <th>date</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
+         <section class="component" id="application">
+            <!-- ... other elements ... -->
+          
+            <article id="listBlogs">
+              <h2>List of Blogs <span id="loading" class="hidden">loading...</span></h2>
+              <div id="blogContainer">
+                <!-- Existing blog element -->
 
-                    </tbody>
-                </table>
+              </div>
+              <div id="addBlog">
+                <h2>Add Blog</h2>
+                <div>
+                  <input id="titleInput" placeholder="Title" type="text">
+                </div>
+                <div>
+                  <input id="authorInput" placeholder="Author" type="text">
+                </div>
+                <div>
+                  <textarea id="contentInput" placeholder="Content"></textarea>
+                </div>
+                <div>
+                  <input id="dateInput" placeholder="Date" type="text">
+                </div>
+
+                <div class="btns">
+                  <button id="addBlogBtn">Add Blog</button>
+                </div>
+              </div>
             </article>
-        </section>
+          </section>
+          
+          
          <!-- end application -->
          <!-- login -->
         <section class="component hidden" id="login">
@@ -105,7 +107,7 @@
          <!--end register -->
     </main>
     <footer>
-        @copyright Tmimi Mehdi 2022 
+        @copyright Nour-el-houda darbal
     </footer>
 </body>
 </html>

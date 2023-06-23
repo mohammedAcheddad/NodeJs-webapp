@@ -1,10 +1,10 @@
 import {addBtn, emailLogin, emailRegister, loginBtn, logoutElement, memoInput, nameRegister, passwordLogin, passwordRegister, passwordRegister2, registerBtn, resetBtn, tbody} from "./config.js"
 import {authentify, logout, register} from "./auth.js"
-import { addMemo, deleteMemo, load } from "./memos.js";
+import { addBlog, loadBlogs } from "./blogs.js";
+
 
 window.addEventListener('popstate', function (event) {
 	singlePageManger(getPath())
-
 });
 
 loginBtn.addEventListener('click',()=>{
@@ -20,17 +20,33 @@ logoutElement.addEventListener('click',()=>{
     logout();
 })
 
-resetBtn.addEventListener('click',()=>{
-    memoInput.value=""
-})
 
-addBtn.addEventListener('click',()=>{
-    const content=memoInput.value
-    if(!content)
-        return alert("please provide a content for your memo")
-    
-    addMemo(content)
-})
+document.getElementById("addBlogBtn").addEventListener("click", async function() {
+    // Get the input values
+    const title = document.getElementById("titleInput").value;
+    const author = document.getElementById("authorInput").value;
+    const content = document.getElementById("contentInput").value;
+    const date = document.getElementById("dateInput").value;
+  
+    // Create a blog object
+    const blog = {
+      title: title,
+      author: author,
+      content: content,
+      date: date
+    };
+  
+    // Process the blog or perform any necessary actions
+    let x= await addBlog(title, author, content, date)
+
+    // Clear the input fields
+    document.getElementById("titleInput").value = "";
+    document.getElementById("authorInput").value = "";
+    document.getElementById("contentInput").value = "";
+    document.getElementById("dateInput").value = "";
+  });
+
+
 
 registerBtn.addEventListener('click',()=>{
     // Recuperation des valeurs
@@ -61,49 +77,14 @@ export const viderLogin = ()=>{
     passwordLogin.value=""
     emailLogin.value=""
 }
-
-
-export const addMemoToTable=(memo)=>{
-    const {date,content,_id} = memo
-
-    // creation des elemments
-    const tr= document.createElement("tr")
-    const td1= document.createElement("td")
-    const td2= document.createElement("td")
-    const td3= document.createElement("td")
-    const td4= document.createElement("td")
-    const btn= document.createElement("button")
-
-    // liaison parent.appendChild(fils)
-    tr.appendChild(td1)
-    tr.appendChild(td2)
-    tr.appendChild(td3)
-    tr.appendChild(td4)
-    td4.appendChild(btn)
-
-    tr.setAttribute("id",_id);
-    //remplissage
-    td1.innerText=_id
-    td2.innerText=content
-    td3.innerText=date
-    btn.innerText="delete"
-
-    btn.classList.add("delete")
-    btn.addEventListener("click",()=>{
-        //TODO : call fetch delete + delete row
-        deleteMemo(_id)
-    })
-
-    tbody.appendChild(tr)
-}
-
 const getPath=()=>window.location.hash || '#welcome'
 const singlePageManger =(path)=>{
     console.log(path)
     if(path=="#application")
     {
-        tbody.innerText=""
-        load();
+        loadBlogs();
+        document.getElementById("blogContainer").textContent=''
+        
     }
     const components=document.getElementsByClassName("component")
     Array.from(components).forEach(element=>{

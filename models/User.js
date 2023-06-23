@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const { schemaMemo } = require("./Memo");
+const { blogschema } = require("./Blogs");
 
 const schema= new mongoose.Schema({
     login:{
@@ -14,7 +14,7 @@ const schema= new mongoose.Schema({
         type:String,
         required:true
     },
-    memos:[schemaMemo]
+    blogs:[blogschema]
 })
 const User=mongoose.model("users",schema)
 module.exports.User=User

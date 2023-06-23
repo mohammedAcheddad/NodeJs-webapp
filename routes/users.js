@@ -28,10 +28,12 @@ router.post('/register',async (req,res)=>{
     const mdpCrypted= await bcrypt.hash(pwd,10)
     const user = new User({
         login:login,
-        nom:name,
+        name:name,
         pwd:mdpCrypted,
-        memos:[]
+        blogs:[]
     })
+    console.log(user)
+
     user.save().then(() =>res.status(201).json({message:'success'}))
     .catch(err=>res.status(500).json({message:err}))
 })
@@ -47,7 +49,7 @@ router.post("/login",async (req,res)=>{
     {
         // insertion d une propriete dans la session
         req.session.login=login;
-        return res.json({message:'login success',nom:findUser.nom});//200
+        return res.json({message:'login success',name:findUser.name});//200
     }
     res.status(400).json({message:'incorrect password'});
 })

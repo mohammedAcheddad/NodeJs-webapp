@@ -17,12 +17,12 @@ export const authentify=(login,pwd)=>{
             logoutElement.classList.remove("hidden")
             viderLogin();
             res.json().then(data=>{
-                const {nom}=data;
-                logoutElement.children[0].innerText="Logout("+nom+")"
+                const {name}=data;
+                console.log(name);
+                logoutElement.children[0].innerText="Logout("+name+")"
 
                 // insertion du JWT dans le local storage
             }).catch(err=>alert(err))
-            // (Logout (Sarah))
         }
         else{
             alert("echec d'authentification")
@@ -41,7 +41,6 @@ export const logout=()=>{
             logoutElement.children[0].innerText="Logout"
             logoutElement.classList.add("hidden")
             loginElement.classList.remove("hidden")
-            // suppression du JWT  du local Storage
         }
         else{
             alert("error dans le logout")
