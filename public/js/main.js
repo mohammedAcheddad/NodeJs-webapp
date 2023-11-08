@@ -26,6 +26,9 @@ document.getElementById("addBlogBtn").addEventListener("click", async function()
     const title = document.getElementById("titleInput").value;
     const author = document.getElementById("authorInput").value;
     const content = document.getElementById("contentInput").value;
+
+
+
     const date = document.getElementById("dateInput").value;
   
     // Create a blog object
@@ -102,3 +105,6 @@ const checkConnection=()=>{
       const idUser = localStorage.getItem("idUser")
       //if(idUser)
 }
+
+
+// new change
